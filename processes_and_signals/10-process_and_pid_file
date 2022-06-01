@@ -1,30 +1,29 @@
 #!/usr/bin/env bash
 # Script that displays "To infinity and beyond" indefinitely
 
-disp_love_msg()
+do_sigint()
 {
 	echo "Y U no love me?!"
 }
 
-rm_file_and_end()
+do_sigquit()
 {
 	rm /var/run/myscript.pid
 	kill -9 $$
 }
 
-disp_kill_msg()
+do_sigterm()
 {
 	echo "I hate the kill command"
-	rm_file_and_end
+	do_sigquit
 }
 
-trap disp_kill_msg SIGTERM
-trap disp_love_msg SIGINT
-trap rm_file_and_end SIGQUIT
+trap do_sigterm SIGTERM
+trap do_sigint SIGINT
+trap do_sigquit SIGQUIT
 
 echo $$ > /var/run/myscript.pid
 
 while true; do
 	echo "To infinity and beyond"
-	sleep 2
 done

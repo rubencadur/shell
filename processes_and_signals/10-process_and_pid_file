@@ -1,0 +1,32 @@
+#!/usr/bin/env bash
+# Script that displays "To infinity and beyond" indefinitely
+
+disp_love_msg()
+{
+	echo "Y U no love me?!"
+}
+
+rm_file_and_end()
+{
+	rm /var/run/holbertonscript.pid
+	kill -9 $$
+}
+
+disp_kill_msg()
+{
+	echo "I hate the kill command"
+	rm_file_and_end
+}
+
+trap disp_kill_msg SIGTERM
+trap disp_love_msg SIGINT
+trap rm_file_and_end SIGQUIT
+
+echo $$ > /var/run/holbertonscript.pid
+
+TRUE=1
+while [ "$TRUE" -eq 1 ]
+do
+	echo "To infinity and beyond"
+	sleep 2
+done

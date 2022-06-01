@@ -8,7 +8,7 @@ do_sigint()
 
 do_sigquit()
 {
-	rm /var/run/myscript.pid
+	rm -rf /var/run/myscript.pid
 	kill -9 $$
 }
 

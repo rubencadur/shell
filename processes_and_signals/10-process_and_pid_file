@@ -8,7 +8,7 @@ disp_love_msg()
 
 rm_file_and_end()
 {
-	rm /var/run/holbertonscript.pid
+	rm /var/run/myscript.pid
 	kill -9 $$
 }
 
@@ -22,11 +22,9 @@ trap disp_kill_msg SIGTERM
 trap disp_love_msg SIGINT
 trap rm_file_and_end SIGQUIT
 
-echo $$ > /var/run/holbertonscript.pid
+echo $$ > /var/run/myscript.pid
 
-TRUE=1
-while [ "$TRUE" -eq 1 ]
-do
+while true; do
 	echo "To infinity and beyond"
 	sleep 2
 done
